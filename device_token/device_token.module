@@ -1,0 +1,41 @@
+<?php
+
+use Drupal\device_token\Entity\DeviceToken;
+
+/**
+ * Implements hook_cron().
+ */
+function device_token_cron() {
+  $storage = \Drupal::entityTypeManager()->getStorage('device_token');
+
+  $now = \Drupal::time()->getCurrentTime();
+
+  // Load expired token IDs.
+  $ids = $storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('expires', $now, '<=')
+    ->execute();
+
+  if (!empty($ids)) {
+    $expired_tokens = $storage->loadMultiple($ids);
+    $user_ids_to_delete = [];
+
+    foreach ($expired_tokens as $token) {
+      /** @var \Drupal\device_token\Entity\DeviceToken $token */
+      $uid = $token->get('uid')->target_id;
+      if ($uid && $user = \Drupal::entityTypeManager()->getStorage('user')->load($uid)) {
+        $user_ids_to_delete[$uid] = $user;
+      }
+    }
+
+    // Delete expired tokens.
+    $storage->delete($expired_tokens);
+
+    // Delete associated users.
+    if (!empty($user_ids_to_delete)) {
+      \Drupal::entityTypeManager()
+        ->getStorage('user')
+        ->delete($user_ids_to_delete);
+    }
+  }
+}

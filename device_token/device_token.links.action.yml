@@ -1,0 +1,5 @@
+device_token.add_form:
+  title: 'Add device token'
+  route_name: entity.device_token.add_form
+  appears_on:
+    - entity.device_token.collection

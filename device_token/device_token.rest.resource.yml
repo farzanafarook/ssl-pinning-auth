@@ -1,0 +1,9 @@
+device_token_cert_resource:
+  enabled: true
+  uri_paths:
+    create: '/device-token/certificate'
+  methods: [POST]
+  formats: [json]
+  authentication:
+    - cookie
+    - ssl_pinning

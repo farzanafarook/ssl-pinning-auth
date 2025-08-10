@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - device_token
+id: device_token_delete_action
+label: 'Delete device tokens'
+type: device_token
+plugin: entity:delete_action:device_token
+configuration: {  }

@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - device_token
+id: device_token_save_action
+label: 'Save device tokens'
+type: device_token
+plugin: entity:save_action:device_token
+configuration: {  }

@@ -1,0 +1,7 @@
+name: 'Device Token'
+type: module
+description: 'Stores device fingerprints for SSL pinning.'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:user

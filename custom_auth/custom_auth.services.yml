@@ -1,0 +1,34 @@
+services:
+  logger.channel.custom_auth:
+    parent: logger.channel_base
+    arguments: ['custom_auth']
+
+  custom_auth.ssl_pinning_auth:
+    class: Drupal\custom_auth\Authentication\Provider\SSLPinningAuth
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: authentication_provider, provider_id: ssl_pinning, priority: 100 }
+
+  custom_auth.hmac_auth:
+    class: Drupal\custom_auth\Authentication\Provider\HmacAuth
+    arguments:
+      - '@config.factory'
+      - '@key.repository'
+      - '@entity_type.manager'
+      - '@logger.channel.custom_auth'
+    tags:
+      - { name: authentication_provider, provider_id: hmac_auth, priority: 200 }
+
+  custom_auth.oauth_device_auth:
+    class: Drupal\custom_auth\Authentication\Provider\OAuthDeviceAuth
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: authentication_provider, provider_id: oauth2, priority: 100 }
+
+  custom_auth.unified_device_auth:
+    class: Drupal\custom_auth\Authentication\Provider\UnifiedDeviceAuth
+    arguments:
+      - '@entity_type.manager'
+      - '@logger.channel.custom_auth'
+    tags:
+      - { name: authentication_provider, provider_id: unified_device_auth, priority: 200 }

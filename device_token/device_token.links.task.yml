@@ -1,0 +1,9 @@
+entity.device_token.settings:
+  title: 'Settings'
+  route_name: entity.device_token.settings
+  base_route: entity.device_token.settings
+entity.device_token.collection:
+  title: 'Device Tokens'
+  route_name: entity.device_token.collection
+  base_route: system.admin_content
+  weight: 10

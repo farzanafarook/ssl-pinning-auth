@@ -1,0 +1,24 @@
+entity.device_token.settings:
+  title: 'Device Token'
+  description: 'Configure a Device Token entity type.'
+  route_name:  entity.device_token.settings
+  parent: system.admin_structure
+
+entity.device_token.collection:
+  title: 'Device Tokens'
+  description: 'List of device tokens.'
+  route_name: entity.device_token.collection
+  parent: system.admin_content
+
+device_token.settings:
+  title: 'SSL Pinning Settings'
+  description: 'Configure CA cert used for SSL pinning.'
+  route_name: device_token.settings
+  parent: system.admin_config_security
+  weight: 100
+
+entity.device_token_type.collection:
+  title: 'Device Token types'
+  description: 'Manage and CRUD actions on Device Token type.'
+  parent: system.admin_structure
+  route_name: entity.device_token_type.collection

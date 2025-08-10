@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the device_token module.
+ */
+
+use Drupal\rest\Entity\RestResourceConfig;
+
+/**
+ * Implements hook_install().
+ */
+function device_token_install() {
+  // Enable the device_token_cert REST resource.
+  $config = RestResourceConfig::create([
+    'id' => 'device_token_cert',
+    'plugin_id' => 'device_token_cert',
+    'granularity' => 'resource',
+    'configuration' => [
+      'methods' => ['POST'],
+      'formats' => ['json'],
+      'authentication' => ['cookie', 'basic_auth'],
+    ],
+  ]);
+  $config->save();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function device_token_uninstall() {
+  // Remove the REST resource configuration.
+  $config = RestResourceConfig::load('device_token_cert');
+  if ($config) {
+    $config->delete();
+  }
+}

@@ -1,0 +1,5 @@
+administer device_token:
+  title: 'Administer device tokens'
+  restrict access: true
+restful post device_token_cert_resource:
+  title: 'Access POST on Device Token Certificate resource'

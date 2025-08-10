@@ -1,0 +1,17 @@
+# SSL Pinning config route (if you have one)
+custom_auth.ssl_pinning_config:
+  path: '/admin/config/services/ssl-pinning-auth'
+  defaults:
+    _form: '\Drupal\custom_auth\Form\SSLPinningConfigForm'
+    _title: 'SSL Pinning Authentication Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+# HMAC config route
+custom_auth.hmac_config:
+  path: '/admin/config/services/hmac-auth'
+  defaults:
+    _form: '\Drupal\custom_auth\Form\HmacConfigForm'
+    _title: 'HMAC Authentication Settings'
+  requirements:
+    _permission: 'administer site configuration'

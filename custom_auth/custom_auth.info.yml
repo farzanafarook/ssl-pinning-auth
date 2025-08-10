@@ -1,0 +1,8 @@
+name: Custom Auth
+type: module
+description: 'Provides SSL pinning authentication for REST services'
+core_version_requirement: ^9 || ^10
+package: Web services
+dependencies:
+  - drupal:rest
+  - key:key

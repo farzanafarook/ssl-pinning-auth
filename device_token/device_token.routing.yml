@@ -1,0 +1,31 @@
+entity.device_token.settings:
+  path: 'admin/structure/device-token'
+  defaults:
+    _form: '\Drupal\device_token\Form\DeviceTokenSettingsForm'
+    _title: 'Device Token'
+  requirements:
+    _permission: 'administer device_token'
+
+device_token.settings:
+  path: '/admin/config/security/sslconfigform'
+  defaults:
+    _form: '\Drupal\device_token\Form\SSLPinningSettingsForm'
+    _title: 'SSL Pinning Configuration'
+  requirements:
+    _permission: 'administer site configuration'
+
+entity.device_token.canonical:
+  path: '/device-token/{device_token}'
+  defaults:
+    _entity_view: 'device_token.full'
+    _title_callback: '\Drupal\device_token\Controller\DeviceTokenController::title'
+  requirements:
+    _entity_access: 'device_token.view'
+
+device_token.hmac_settings:
+  path: '/admin/config/security/hmac-auth'
+  defaults:
+    _form: '\Drupal\device_token\Form\HmacAuthSettingsForm'
+    _title: 'HMAC Authentication Settings'
+  requirements:
+    _permission: 'administer site configuration'

@@ -1,0 +1,13 @@
+# id: entity.fingerprint
+# plugin_id: entity:fingerprint
+# granularity: method
+# langcode: en
+# status: true
+# dependencies: {  }
+# configuration:
+#   methods:
+#     - POST
+#   formats:
+#     - json
+#   authentication:
+#     - ssl_pinning
